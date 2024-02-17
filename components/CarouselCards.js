@@ -9,13 +9,16 @@ import CarouselCardItem, {
 const CarouselCards = () => {
   const data = [
     {
-      title: "Plate 1",
+      title: "Veggie Plate",
       body: "Pickup date: 2/14/2023. Pickup time: 8am",
-      imgUrl: "https://picsum.photos/id/11/200/300",
+      info: "This plate contains cucumbers, eggs, tomato, cauliflower, and broccoli.",
+      imgUrl:
+        "https://www.shutterstock.com/image-vector/vector-illustration-fried-eggs-vegetables-600nw-1519043639.jpg",
     },
     {
       title: "Plate 2",
       body: "Pickup date: 2/14/2023. Pickup time: 2pm",
+      info: "testing testingSed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
       imgUrl: "https://picsum.photos/id/10/200/300",
     },
     {
@@ -28,10 +31,10 @@ const CarouselCards = () => {
   const isCarousel = React.useRef(null);
 
   return (
-    <View style={{ paddingTop: 50, backgroundColor: "green" }}>
+    <View style={{ paddingTop: 50 }}>
       <Carousel
         layout="default"
-        layoutCardOffset={14}
+        layoutCardOffset={10}
         ref={isCarousel}
         data={data}
         renderItem={CarouselCardItem}
@@ -40,13 +43,6 @@ const CarouselCards = () => {
         onSnapToItem={(index) => setIndex(index)}
         useScrollView={true}
       />
-      {index === 0 ? (
-        <View style={{ backgroundColor: "red" }}>
-          <Text>Hello World 1</Text>
-        </View>
-      ) : null}
-      {index === 1 ? <Text>Testing 2</Text> : null}
-      {index === 2 ? <Text>3</Text> : null}
     </View>
   );
 };
