@@ -2,10 +2,20 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import TabNavigator from "./navigation/TabNavigator";
 
+import { ConvexProvider, ConvexReactClient } from "convex/react";
+import "react-native-get-random-values";
+import { CONVEX_URL } from "@env";
+
+const convex = new ConvexReactClient(CONVEX_URL, {
+  unsavedChangesWarning: false,
+});
+
 export default function App() {
   return (
-    <NavigationContainer>
-      <TabNavigator />
-    </NavigationContainer>
+    <ConvexProvider client={convex}>
+      <NavigationContainer>
+        <TabNavigator />
+      </NavigationContainer>
+    </ConvexProvider>
   );
 }

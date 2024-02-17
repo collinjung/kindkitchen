@@ -2,12 +2,12 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import ChatScreen from "../screens/ChatScreen";
 import OrderScreen from "../screens/OrderScreen";
-import Ionicons from '@expo/vector-icons/Ionicons';
-
+import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator();
-<ion-icon name="home-outline"></ion-icon>
+<ion-icon name="home-outline"></ion-icon>;
 
 function TabNavigator() {
   return (
@@ -18,14 +18,15 @@ function TabNavigator() {
           if (route.name === "Home") {
             iconName = focused ? "home" : "home";
           } else if (route.name === "Profile") {
-            iconName = focused ? "person-circle-outline" : "person-circle-outline";
-          }
-          else if (route.name === "Order") {
+            iconName = focused
+              ? "person-circle-outline"
+              : "person-circle-outline";
+          } else if (route.name === "Order") {
             iconName = focused ? "fast-food-outline" : "fast-food-outline";
+          } else if (route.name === "Chat") {
+            iconName = focused ? "chat" : "chat";
           }
-          return (
-            <Ionicons name={iconName} size={30} color={color}/>
-          );
+          return <Ionicons name={iconName} size={30} color={color} />;
         },
         tabBarActiveTintColor: "pink",
         tabBarInactiveTintColor: "gray",
@@ -33,6 +34,7 @@ function TabNavigator() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Order" component={OrderScreen} />
+      <Tab.Screen name="Chat" component={ChatScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
