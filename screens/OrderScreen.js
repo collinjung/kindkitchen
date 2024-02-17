@@ -101,7 +101,7 @@ const OrderScreen = () => {
       foodName: "Veggie Plate",
       ingredients: ["Cucumbers", "Eggs", "Tomato", "Cauliflower", "Broccoli"],
       description: "A yummy vegetarian plate.",
-      tags: [""],
+      tags: [],
       image:
         "https://www.shutterstock.com/image-vector/vector-illustration-fried-eggs-vegetables-600nw-1519043639.jpg",
     },
@@ -109,7 +109,7 @@ const OrderScreen = () => {
       foodName: "Veggie Plate",
       ingredients: ["Cucumbers", "Eggs", "Tomato", "Cauliflower", "Broccoli"],
       description: "A yummy vegetarian plate.",
-      tags: [""],
+      tags: [],
       image:
         "https://www.shutterstock.com/image-vector/vector-illustration-fried-eggs-vegetables-600nw-1519043639.jpg",
     },
