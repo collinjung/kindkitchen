@@ -24,7 +24,7 @@ function TabNavigator() {
           } else if (route.name === "Order") {
             iconName = focused ? "fast-food-outline" : "fast-food-outline";
           } else if (route.name === "Chat") {
-            iconName = focused ? "chat" : "chat";
+            iconName = focused ? "chatbubbles" : "chatbubbles";
           }
           return <Ionicons name={iconName} size={30} color={color} />;
         },
