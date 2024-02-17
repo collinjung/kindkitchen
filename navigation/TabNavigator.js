@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import ChatScreen from "../screens/ChatScreen";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
@@ -16,6 +17,8 @@ function TabNavigator() {
             iconName = focused ? "home" : "home";
           } else if (route.name === "Profile") {
             iconName = focused ? "account" : "account";
+          } else if (route.name === "Chat") {
+            iconName = focused ? "chat" : "chat";
           }
           return (
             <MaterialCommunityIcons name={iconName} size={size} color={color} />
@@ -26,6 +29,7 @@ function TabNavigator() {
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Chat" component={ChatScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );

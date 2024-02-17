@@ -1,3 +1,5 @@
+// const messages = useQuery(api.messages.list) || [];
+// const sendMessage = useMutation(api.messages.send);
 import React from "react";
 import {
   View,
@@ -8,12 +10,13 @@ import {
   ScrollView,
   Image,
 } from "react-native";
-import CarouselCards from "../components/CarouselCards";
 
-const HomeScreen = () => {
+const ChatScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <CarouselCards />
+      <View>
+        <Text>Hello world</Text>
+      </View>
     </SafeAreaView>
   );
 };
@@ -26,4 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default ChatScreen;
