@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import ChatScreen from "../screens/ChatScreen";
+import RecipeScreen from "../screens/RecipeScreen";
 import OrderScreen from "../screens/OrderScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -13,18 +13,16 @@ function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color }) => {
+        tabBarIcon: ({ color }) => {
           let iconName;
           if (route.name === "Home") {
-            iconName = focused ? "home" : "home";
+            iconName = "home";
           } else if (route.name === "Profile") {
-            iconName = focused
-              ? "person-circle-outline"
-              : "person-circle-outline";
+            iconName = "person-circle-outline";
           } else if (route.name === "Order") {
-            iconName = focused ? "fast-food-outline" : "fast-food-outline";
-          } else if (route.name === "Chat") {
-            iconName = focused ? "chat" : "chat";
+            iconName = "fast-food-outline";
+          } else if (route.name === "Recipe") {
+            iconName = "clipboard-outline";
           }
           return <Ionicons name={iconName} size={30} color={color} />;
         },
@@ -34,7 +32,7 @@ function TabNavigator() {
     >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Order" component={OrderScreen} />
-      <Tab.Screen name="Chat" component={ChatScreen} />
+      <Tab.Screen name="Recipe" component={RecipeScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
