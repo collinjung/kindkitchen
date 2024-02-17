@@ -14,6 +14,7 @@ const Card = ({ foodName, ingredients, description, tags, image }) => {
     <View style={cardStyles.card}>
       <Image source={{ uri: image }} style={cardStyles.image} />
       <View style={cardStyles.textContainer}>
+        <Text>Hello!</Text>
         <Text style={cardStyles.foodName}>{foodName}</Text>
         <Text style={cardStyles.ingredients}>Ingredients: {ingredients.join(", ")}</Text>
         <Text style={cardStyles.description}>{description}</Text>
