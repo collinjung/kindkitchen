@@ -23,6 +23,18 @@ const CarouselCardItem = ({ item, index }) => {
       clickable={true}
     >
       <View>
+        <Text
+          style={{
+            fontSize: 22,
+            textAlign: "center",
+            marginBottom: 10,
+          }}
+        >
+          Pickup:{" "}
+          <Text style={{ fontWeight: "bold" }}>
+            {item.date}, {item.time}
+          </Text>
+        </Text>
         <View style={styles.container} key={index}>
           <Image source={{ uri: item.image }} style={styles.image} />
           <Text style={styles.header}>{item.foodName}</Text>
@@ -79,7 +91,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 20,
     paddingTop: 20,
-    paddingBottom: 10,
+    paddingBottom: 5,
   },
   body: {
     color: "#222",

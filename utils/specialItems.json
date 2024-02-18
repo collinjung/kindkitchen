@@ -5,6 +5,8 @@
     "description": "Classic roasted beef with mashed potatoes.",
     "tags": ["Western"],
     "provider": "MaryCooks",
+    "date": "02-19-2024",
+    "time": "17:00",
     "image": "https://hips.hearstapps.com/hmg-prod/images/delish-roast-beef-horizontal-1540505165.jpg?crop=1xw:0.84375xh;center,top"
   },
   {
@@ -13,6 +15,8 @@
     "description": "Sweet Kung Pao sauce, served over rice and crowned with roasted peanuts.",
     "tags": ["Asian", "Vegan", "Vegatarian"],
     "provider": "AsianBitesbyJeff",
+    "date": "02-20-2024",
+    "time": "17:00",
     "image": "https://pinchandswirl.com/wp-content/uploads/2020/09/Kung-Pao-Brussels-Sprouts.jpg"
   },
   {
@@ -20,6 +24,8 @@
     "ingredients": ["Pork", "Buns", "Lettuce"],
     "description": "Tender, tangy, sweet and smoky with the perfect kick, smothered in BBQ sauce.",
     "tags": ["Western"],
+    "date": "02-19-2024",
+    "time": "17:00",
     "provider": "CarolRecipes",
     "image": "https://carlsbadcravings.com/wp-content/uploads/2018/01/BBQ-Pulled-Pork-1.jpg"
   },
@@ -28,6 +34,8 @@
     "ingredients": ["Eggplant", "Milk", "Cheese", "Tomato"],
     "description": "Tender slices of roasted eggplant with rich marinara sauce and cheese.",
     "tags": ["Western", "Vegetarian"],
+    "date": "02-19-2024",
+    "time": "17:00",
     "provider": "MaryCooks",
     "image": "https://www.wellplated.com/wp-content/uploads/2019/08/Eggplant-Lasagna.jpg"
   },
@@ -36,6 +44,8 @@
     "ingredients": ["Tofu", "Mayonnaise", "Pita", "Cucumber"],
     "description": "Lemongrass tofu bahn mi made with pita pockets and a lighter version of the classic.",
     "tags": ["Asian", "Vegan", "Vegetarian"],
+    "date": "02-19-2024",
+    "time": "17:00",
     "provider": "AsianBitesbyJeff",
     "image": "https://hurrythefoodup.com/wp-content/uploads/2021/03/bahn-mi-pita.jpg.webp"
   }

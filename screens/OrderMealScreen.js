@@ -12,8 +12,16 @@ import {
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const OrderMealScreen = ({ route, navigation }) => {
-  const { foodName, description, image, ingredients, provider, tags } =
-    route.params;
+  const {
+    foodName,
+    description,
+    ingredients,
+    provider,
+    tags,
+    date,
+    time,
+    image,
+  } = route.params;
   const [isPressed, setIsPressed] = useState(false);
 
   const onPressHandler = () => {
@@ -37,7 +45,7 @@ const OrderMealScreen = ({ route, navigation }) => {
           <View style={styles.time}>
             <Ionicons name="time" size={15} color="black" />
             <Text style={{ fontWeight: "bold", marginLeft: 2 }}>
-              February 20, 6PM-8PM
+              Date: {date}, Time: {time}
             </Text>
           </View>
           <Text style={styles.description}>{description}</Text>
@@ -54,7 +62,7 @@ const OrderMealScreen = ({ route, navigation }) => {
               Tuesday February 20th 6PM-8PM. Feel free to RSVP below. I hope you
               enjoy my bahn mi :)
             </Text>
-            <Pressable
+            <TouchableOpacity
               style={[styles.button, isPressed ? styles.buttonPressed : null]}
               onPress={onPressHandler}
             >
@@ -71,7 +79,7 @@ const OrderMealScreen = ({ route, navigation }) => {
               ) : (
                 <Ionicons name="people" size={15} color="#FF4960" />
               )}
-            </Pressable>
+            </TouchableOpacity>
           </View>
           <View style={styles.box}>
             <Text style={styles.header}>Ingredients</Text>
@@ -80,7 +88,7 @@ const OrderMealScreen = ({ route, navigation }) => {
             ))}
           </View>
         </View>
-        <Pressable
+        <TouchableOpacity
           style={styles.orderbutton}
           onPress={() =>
             navigation.navigate("Order2", {
@@ -88,6 +96,8 @@ const OrderMealScreen = ({ route, navigation }) => {
               description,
               ingredients,
               provider,
+              date,
+              time,
               tags,
               image,
             })
@@ -96,7 +106,7 @@ const OrderMealScreen = ({ route, navigation }) => {
           <Text style={{ fontWeight: "bold", color: "white", fontSize: 15 }}>
             Order
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );

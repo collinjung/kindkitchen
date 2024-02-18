@@ -9,7 +9,9 @@
       "Balsamic Vinaigrette",
       "Almonds"
     ],
-    "description": "AFeaturing herb-seasoned chicken on mixed greens with cherry tomatoes, cucumber, and feta.",
+    "description": "Featuring a herb-seasoned chicken on mixed greens with cherry tomatoes, cucumber, and feta.",
+    "date": "02-18-2024",
+    "time": "08:00",
     "tags": ["Western"],
     "provider": "IvanSalads",
     "image": "https://www.realsimple.com/thmb/XzRFCoktumuInlHJQzBrLVYNAJ4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/warm-roast-chicken-salad-recipe-0222FOO-744b4650c1e4436c9d8fb7c882011a4a.jpg"
@@ -19,6 +21,8 @@
     "ingredients": ["Salmon", "Rice", "Soy Sauce", "Avocado"],
     "description": "A nutritious salmon rice bowl with plenty of protein and a savory kick",
     "tags": ["Asian", "Pescetarian"],
+    "date": "02-19-2024",
+    "time": "08:00",
     "provider": "AsianBitesbyJeff",
     "image": "https://assets.bonappetit.com/photos/651196bd187c095996ca5ef1/1:1/w_3368,h_3368,c_limit/20230915-WEB-SEO-0905.jpg"
   },
@@ -27,6 +31,8 @@
     "ingredients": ["Chicken", "Yogurt", "Tomato", "Onions", "Cream", "Rice"],
     "description": "A rich and creamy curry that's a staple in Indian cuisine",
     "tags": ["Asian"],
+    "date": "02-20-2024",
+    "time": "12:00",
     "provider": "HomeHelen",
     "image": "https://gimmedelicious.com/wp-content/uploads/2020/01/30-Minute-Instant-Pot-Butter-Chicken-7.jpg"
   },
@@ -42,6 +48,8 @@
     ],
     "description": "A delightful blend of fluffy rice stir-fried to perfection.",
     "tags": ["Asian", "Vegetarian", "Pescatarian"],
+    "date": "02-19-2024",
+    "time": "17:00",
     "provider": "HomeHelen",
     "image": "https://mission-food.com/wp-content/uploads/2022/01/Spicy-Vegetable-Fried-Rice-Featured.jpg"
   },
@@ -56,6 +64,8 @@
       "Peas"
     ],
     "description": "A delightful blend of fluffy rice stir-fried to perfection.",
+    "date": "02-19-2024",
+    "time": "18:00",
     "tags": ["Asian", "Vegetarian", "Pescatarian", "Vegan"],
     "provider": "HomeHelen",
     "image": "https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2020/02/vegan-yaki-udon-close-1024x1536.jpg"
@@ -72,6 +82,8 @@
     ],
     "description": "A savory and sweet Korean dish of stir-fried glass noodles and vegetables.",
     "tags": ["Asian", "Vegetarian", "Pescatarian", "Vegan"],
+    "date": "02-20-2024",
+    "time": "13:00",
     "provider": "MaryCooks",
     "image": "https://assets.epicurious.com/photos/614b77f992c8a88b430d0a2f/16:9/w_3024,h_1701,c_limit/Japchae1-jd.jpg"
   }

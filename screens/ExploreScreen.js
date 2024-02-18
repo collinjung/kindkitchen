@@ -7,6 +7,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Dimensions,
+  TouchableOpacity,
   ScrollView,
   Image,
   Pressable,
@@ -26,6 +27,8 @@ const Card = ({
   ingredients,
   provider,
   description,
+  date,
+  time,
   tags,
   image,
 }) => {
@@ -174,20 +177,20 @@ const ExploreScreen = () => {
           </View>
         </View>
         <View style={styles.filtersection}>
-          <Pressable
+          <TouchableOpacity
             style={styles.filter}
             onPress={() => setModalVisible(true)}
           >
             <Text style={{ color: "#FF4960", marginRight: 5 }}>Filter</Text>
             <Ionicons name="filter" color="#FF4960" />
-          </Pressable>
+          </TouchableOpacity>
         </View>
       </View>
       <View style={styles.section}>
         <Text style={styles.title}>Weekly Items</Text>
         <ScrollView horizontal={true}>
           {filteredWeeklyItems.map((item, index) => (
-            <Pressable
+            <TouchableOpacity
               key={index}
               onPress={() =>
                 navigation.navigate("Order", {
@@ -195,6 +198,8 @@ const ExploreScreen = () => {
                   description: item.description,
                   ingredients: item.ingredients,
                   provider: item.provider,
+                  date: item.date,
+                  time: item.time,
                   tags: item.tags,
                   image: item.image,
                 })
@@ -208,7 +213,7 @@ const ExploreScreen = () => {
                 tags={item.tags}
                 image={item.image}
               />
-            </Pressable>
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>
@@ -217,7 +222,7 @@ const ExploreScreen = () => {
         <Text style={styles.title}>Special Items</Text>
         <ScrollView horizontal={true}>
           {filteredSpecialItems.map((item, index) => (
-            <Pressable
+            <TouchableOpacity
               key={index}
               onPress={() =>
                 navigation.navigate("Order", {
@@ -226,6 +231,8 @@ const ExploreScreen = () => {
                   ingredients: item.ingredients,
                   provider: item.provider,
                   tags: item.tags,
+                  date: item.date,
+                  time: item.time,
                   image: item.image,
                 })
               }
@@ -238,7 +245,7 @@ const ExploreScreen = () => {
                 tags={item.tags}
                 image={item.image}
               />
-            </Pressable>
+            </TouchableOpacity>
           ))}
         </ScrollView>
       </View>

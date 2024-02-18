@@ -11,10 +11,43 @@ import {
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import map from "../assets/map.png";
+import { useMutation } from "convex/react";
+import { api } from "../convex/_generated/api";
 
 const Confirmation = ({ route, navigation }) => {
-  const { foodName, description, image, ingredients, provider, tags } =
-    route.params;
+  const {
+    foodName,
+    description,
+    image,
+    date,
+    time,
+    ingredients,
+    provider,
+    tags,
+  } = route.params;
+
+  const mutateSomething = useMutation(api.userPlates.addPlate);
+
+  const handleClick = () => {
+    console.log("hello");
+    mutateSomething(plateData);
+    console.log("hi");
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "My Plates" }],
+    });
+  };
+
+  const plateData = {
+    foodName: foodName,
+    ingredients: ingredients,
+    description: description,
+    tags: tags,
+    provider: provider,
+    date: date,
+    time: time,
+    image: image,
+  };
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -56,9 +89,7 @@ const Confirmation = ({ route, navigation }) => {
             </View>
             <View style={styles.time}>
               <Ionicons name="time" style={{ marginRight: 2 }} size={15} />
-              <Text style={{ marginRight: 2, fontWeight: "bold" }}>
-                All times
-              </Text>
+              <Text style={{ marginRight: 2, fontWeight: "bold" }}>{time}</Text>
             </View>
             <View style={styles.time}>
               <Ionicons name="person" style={{ marginRight: 2 }} size={15} />
@@ -106,20 +137,11 @@ const Confirmation = ({ route, navigation }) => {
             </Text>
           </View>
         </View>
-        <Pressable
-          style={styles.orderbutton}
-          // onPress={() => navigation.navigate("My Plates")}
-          onPress={() => {
-            navigation.reset({
-              index: 0,
-              routes: [{ name: "My Plates" }],
-            });
-          }}
-        >
+        <TouchableOpacity style={styles.orderbutton} onPress={handleClick}>
           <Text style={{ fontWeight: "bold", color: "white", fontSize: 15 }}>
             Done
           </Text>
-        </Pressable>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
