@@ -210,7 +210,7 @@ const ExploreScreen = () => {
 
       <View style={styles.section}>
         <Text style={styles.title}>Special Items</Text>
-        <ScrollView style={styles.scrollView} horizontal={true}>
+        <ScrollView horizontal={true}>
           {filteredSpecialItems.map((item, index) => (
             <Pressable
               key={index}
@@ -269,12 +269,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     backgroundColor: "white",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
   },
-  // scrollView: {
-  //   width: '100%',
-  // },
   section: {
     marginBottom: 20, // Add some space between the sections
     display: "flex",
