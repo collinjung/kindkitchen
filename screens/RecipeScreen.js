@@ -26,7 +26,7 @@ const MessageRender = ({ message }) => {
           m: 40,
         }
       : {
-          author: "OpenPlate AI",
+          author: "KindKitchen AI",
           icon: "happy-outline",
           color: "#FF7E7E",
           align: "flex-start",

@@ -26,12 +26,10 @@ const Confirmation = ({ route, navigation }) => {
     tags,
   } = route.params;
 
-  const mutateSomething = useMutation(api.userPlates.addPlate);
+  const addPlateFn = useMutation(api.userPlates.addPlate);
 
   const handleClick = () => {
-    console.log("hello");
-    mutateSomething(plateData);
-    console.log("hi");
+    addPlateFn(plateData);
     navigation.reset({
       index: 0,
       routes: [{ name: "My Plates" }],
