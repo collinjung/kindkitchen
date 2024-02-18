@@ -14,18 +14,18 @@ function TabNavigator() {
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === "Home") {
+          if (route.name === "My Plates") {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "person-circle" : "person-circle-outline";
-          } else if (route.name === "ExploreStack") {
+          } else if (route.name === "Find Plates") {
             iconName = focused ? "fast-food" : "fast-food-outline";
-          } else if (route.name === "Recipe") {
+          } else if (route.name === "Recipes") {
             iconName = focused ? "clipboard" : "clipboard-outline";
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarShowLabel: false, // This line hides the label for all the tabs
+        tabBarShowLabel: true, // This line hides the label for all the tabs
         tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: "white",
         tabBarStyle: {
@@ -35,17 +35,17 @@ function TabNavigator() {
       })}
     >
       <Tab.Screen
-        name="Home"
+        name="My Plates"
         component={HomeScreen}
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name="ExploreStack"
+        name="Find Plates"
         component={ExploreStack}
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name="Recipe"
+        name="Recipes"
         component={RecipeScreen}
         options={{ headerShown: false }}
       />

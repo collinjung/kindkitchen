@@ -131,58 +131,7 @@ const ExploreScreen = () => {
   const [selectedDiets, setSelectedDiets] = useState([]);
 
   const weeklyitems = useQuery(api.exploreFood.get) || [];
-
-  const specialitems = [
-    {
-      foodName: "Roasted Beef",
-      ingredients: ["Beef", "Potatoes", "Butter"],
-      description: "Classic roasted beef with mashed potatoes.",
-      tags: ["Western"],
-      provider: "MaryCooks",
-      image:
-        "https://hips.hearstapps.com/hmg-prod/images/delish-roast-beef-horizontal-1540505165.jpg?crop=1xw:0.84375xh;center,top",
-    },
-    {
-      foodName: "Kung Pao Brussel Sprouts",
-      ingredients: ["Brussel sprouts", "Rice", "Peanuts", "Garlic"],
-      description:
-        "Sweet Kung Pao sauce, served over rice and crowned with roasted peanuts.",
-      tags: ["Asian", "Vegan", "Vegatarian"],
-      provider: "AsianBitesbyJeff",
-      image:
-        "https://pinchandswirl.com/wp-content/uploads/2020/09/Kung-Pao-Brussels-Sprouts.jpg",
-    },
-    {
-      foodName: "BBQ Pulled Pork Sandwich",
-      ingredients: ["Pork", "Buns", "Lettuce"],
-      description:
-        "Tender, tangy, sweet and smoky with the perfect kick, smothered in BBQ sauce.",
-      tags: ["Western"],
-      provider: "CarolRecipes",
-      image:
-        "https://carlsbadcravings.com/wp-content/uploads/2018/01/BBQ-Pulled-Pork-1.jpg",
-    },
-    {
-      foodName: "Eggplant Lasagna",
-      ingredients: ["Eggplant", "Milk", "Cheese", "Tomato"],
-      description:
-        "Tender slices of roasted eggplant with rich marinara sauce and cheese.",
-      tags: ["Western", "Vegetarian"],
-      provider: "MaryCooks",
-      image:
-        "https://www.wellplated.com/wp-content/uploads/2019/08/Eggplant-Lasagna.jpg",
-    },
-    {
-      foodName: "Lemongrass Tofu Bahn Mi",
-      ingredients: ["Tofu", "Mayonnaise", "Pita", "Cucumber"],
-      description:
-        "Lemongrass tofu bahn mi made with pita pockets and a lighter version of the classic.",
-      tags: ["Asian", "Vegan", "Vegetarian"],
-      provider: "AsianBitesbyJeff",
-      image:
-        "https://hurrythefoodup.com/wp-content/uploads/2021/03/bahn-mi-pita.jpg.webp",
-    },
-  ];
+  const specialitems = useQuery(api.specialItems.get) || [];
 
   // Filter logic applied here
   const filteredWeeklyItems = weeklyitems.filter(
@@ -262,7 +211,7 @@ const ExploreScreen = () => {
 
       <View style={styles.section}>
         <Text style={styles.title}>Special Items</Text>
-        <ScrollView style={styles.scrollView} horizontal={true}>
+        <ScrollView horizontal={true}>
           {filteredSpecialItems.map((item, index) => (
             <Pressable
               key={index}
@@ -330,12 +279,9 @@ const styles = StyleSheet.create({
     display: "flex",
     flex: 1,
     backgroundColor: "white",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
   },
-  // scrollView: {
-  //   width: '100%',
-  // },
   section: {
     marginBottom: 20, // Add some space between the sections
     display: "flex",
