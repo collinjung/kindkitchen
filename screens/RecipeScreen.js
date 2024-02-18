@@ -72,7 +72,17 @@ const RecipeScreen = () => {
   const messages = useQuery(api.messages.list) || [];
   const sendMessage = useAction(api.openai.chat);
   const [newMessageText, setNewMessageText] = useState("");
+  const [isPrepopulated, setIsPrepopulated] = useState(false);
 
+  useEffect(() => {
+    if (messages.length === 0 && !isPrepopulated) {
+      sendMessage({
+        body: "My preferences are carrots, onion, broccoli. My restrictions are egg, milk.",
+        author: "user",
+      });
+      setIsPrepopulated(true);
+    }
+  }, [messages, isPrepopulated]);
   return (
     <KeyboardAvoidingView
       behavior="height"
@@ -80,9 +90,9 @@ const RecipeScreen = () => {
       style={styles.container}
     >
       <ScrollView>
-        {messages?.map((message, i) => (
-          <MessageRender key={i} message={message} />
-        ))}
+        {messages?.map((message, i) =>
+          i !== 0 ? <MessageRender key={i} message={message} /> : null
+        )}
       </ScrollView>
       <View style={{ flexDirection: "row" }}>
         <TextInput
