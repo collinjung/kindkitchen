@@ -4,9 +4,37 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import RecipeScreen from "../screens/RecipeScreen";
 import ExploreStack from "../screens/ExploreScreen";
+
+import DietRestrictions from "../pages/DietRestrictions";
+import AccountDetails from "../pages/AccountDetails";
+import ProfileDetails from "../pages/ProfileDetails";
+import FAQ from "../pages/FAQ";
+import Privacy from "../pages/Privacy";
+import Notifications from "../pages/Notifications";
+import OrderHistory from "../pages/OrderHistory";
+import Favorites from "../pages/Favorites";
+
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const Tab = createBottomTabNavigator();
+const ProfileStack = createNativeStackNavigator();
+
+function ProfileStackNavigator() {
+  return (
+    <ProfileStack.Navigator screenOptions={{ headerShown: false }}>
+      <ProfileStack.Screen name="Home" component={ProfileScreen} />
+      <ProfileStack.Screen name="Favorites" component={Favorites} />
+      <ProfileStack.Screen name="OrderHistory" component={OrderHistory} />
+      <ProfileStack.Screen name="Account" component={AccountDetails} />
+      <ProfileStack.Screen name="ProfileDetails" component={ProfileDetails} />
+      <ProfileStack.Screen name="Privacy" component={Privacy} />
+      <ProfileStack.Screen name="Dietary" component={DietRestrictions} />
+      <ProfileStack.Screen name="Notifs" component={Notifications} />
+      <ProfileStack.Screen name="FAQ" component={FAQ} />
+    </ProfileStack.Navigator>
+  );
+}
 
 function TabNavigator() {
   return (
@@ -51,7 +79,7 @@ function TabNavigator() {
       />
       <Tab.Screen
         name="Profile"
-        component={ProfileScreen}
+        component={ProfileStackNavigator}
         options={{ headerShown: false }}
       />
     </Tab.Navigator>
