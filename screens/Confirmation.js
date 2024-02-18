@@ -108,7 +108,13 @@ const Confirmation = ({ route, navigation }) => {
         </View>
         <Pressable
           style={styles.orderbutton}
-          onPress={() => navigation.navigate("My Plates")}
+          // onPress={() => navigation.navigate("My Plates")}
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: "My Plates" }],
+            });
+          }}
         >
           <Text style={{ fontWeight: "bold", color: "white", fontSize: 15 }}>
             Done
