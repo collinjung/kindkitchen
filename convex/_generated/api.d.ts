@@ -17,6 +17,7 @@ import type {
 import type * as exploreFood from "../exploreFood.js";
 import type * as messages from "../messages.js";
 import type * as openai from "../openai.js";
+import type * as specialItems from "../specialItems.js";
 import type * as userPlates from "../userPlates.js";
 
 /**
@@ -31,6 +32,7 @@ declare const fullApi: ApiFromModules<{
   exploreFood: typeof exploreFood;
   messages: typeof messages;
   openai: typeof openai;
+  specialItems: typeof specialItems;
   userPlates: typeof userPlates;
 }>;
 export declare const api: FilterApi<

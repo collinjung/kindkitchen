@@ -12,16 +12,18 @@ import { useNavigation, StackActions } from "@react-navigation/native";
 
 const OrderMealScreen = ({ route, navigation }) => {
   // Extracting parameters from the route
-  const { foodName, description, ingredients, provider, tags, image } =
-    route.params;
+  if (route.params) {
+    const { foodName, description, ingredients, provider, tags, image } =
+      route.params;
 
-  return (
-    <View style={styles.container}>
-      <Text style={styles.foodName}>{foodName}</Text>
-      <Image source={{ uri: image }} style={styles.image} />
-      <Text style={styles.description}>{description}</Text>
-    </View>
-  );
+    return (
+      <View style={styles.container}>
+        <Text style={styles.foodName}>{foodName}</Text>
+        <Image source={{ uri: image }} style={styles.image} />
+        <Text style={styles.description}>{description}</Text>
+      </View>
+    );
+  }
 };
 
 const styles = StyleSheet.create({
