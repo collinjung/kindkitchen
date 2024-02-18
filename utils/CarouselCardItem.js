@@ -35,7 +35,7 @@ const CarouselCardItem = ({ item, index }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#EDD3E1",
+    backgroundColor: "#f6f7fb",
     borderRadius: 8,
     width: ITEM_WIDTH,
     paddingBottom: 40,

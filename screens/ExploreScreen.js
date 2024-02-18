@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import OrderMealScreen from "./OrderMealScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import FilterModal from "../components/FilterModal";
 import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 
@@ -35,11 +36,23 @@ const Card = ({
         {/* <Text style={cardStyles.ingredients}>Ingredients: {ingredients.join(", ")}</Text> */}
         {/* <Text style={cardStyles.description}>{description}</Text> */}
         <View style={cardStyles.tagsContainer}>
-          {tags.map((tag, index) => (
-            <View key={index} style={cardStyles.tagBubble}>
-              <Text style={cardStyles.tagText}>{tag}</Text>
-            </View>
-          ))}
+          {tags.length > 2 ? (
+            <>
+              <View style={cardStyles.tagBubble}>
+                <Text style={cardStyles.tagText}>{tags[0]}</Text>
+              </View>
+              <View style={cardStyles.tagBubble}>
+                <Text style={cardStyles.tagText}>{tags[1]}</Text>
+              </View>
+              <Text style={cardStyles.tagText}>...</Text>
+            </>
+          ) : (
+            tags.map((tag, index) => (
+              <View key={index} style={cardStyles.tagBubble}>
+                <Text style={cardStyles.tagText}>{tag}</Text>
+              </View>
+            ))
+          )}
         </View>
       </View>
     </View>
@@ -112,9 +125,80 @@ const cardStyles = StyleSheet.create({
 
 const ExploreScreen = () => {
   const navigation = useNavigation();
-  // const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCuisines, setSelectedCuisines] = useState([]);
+  const [selectedDiets, setSelectedDiets] = useState([]);
 
   const weeklyitems = useQuery(api.exploreFood.get) || [];
+
+  const specialitems = [
+    {
+      foodName: "Roasted Beef",
+      ingredients: ["Beef", "Potatoes", "Butter"],
+      description: "Classic roasted beef with mashed potatoes.",
+      tags: ["Western"],
+      provider: "MaryCooks",
+      image:
+        "https://hips.hearstapps.com/hmg-prod/images/delish-roast-beef-horizontal-1540505165.jpg?crop=1xw:0.84375xh;center,top",
+    },
+    {
+      foodName: "Kung Pao Brussel Sprouts",
+      ingredients: ["Brussel sprouts", "Rice", "Peanuts", "Garlic"],
+      description:
+        "Sweet Kung Pao sauce, served over rice and crowned with roasted peanuts.",
+      tags: ["Asian", "Vegan", "Vegatarian"],
+      provider: "AsianBitesbyJeff",
+      image:
+        "https://pinchandswirl.com/wp-content/uploads/2020/09/Kung-Pao-Brussels-Sprouts.jpg",
+    },
+    {
+      foodName: "BBQ Pulled Pork Sandwich",
+      ingredients: ["Pork", "Buns", "Lettuce"],
+      description:
+        "Tender, tangy, sweet and smoky with the perfect kick, smothered in BBQ sauce.",
+      tags: ["Western"],
+      provider: "CarolRecipes",
+      image:
+        "https://carlsbadcravings.com/wp-content/uploads/2018/01/BBQ-Pulled-Pork-1.jpg",
+    },
+    {
+      foodName: "Eggplant Lasagna",
+      ingredients: ["Eggplant", "Milk", "Cheese", "Tomato"],
+      description:
+        "Tender slices of roasted eggplant with rich marinara sauce and cheese.",
+      tags: ["Western", "Vegetarian"],
+      provider: "MaryCooks",
+      image:
+        "https://www.wellplated.com/wp-content/uploads/2019/08/Eggplant-Lasagna.jpg",
+    },
+    {
+      foodName: "Lemongrass Tofu Bahn Mi",
+      ingredients: ["Tofu", "Mayonnaise", "Pita", "Cucumber"],
+      description:
+        "Lemongrass tofu bahn mi made with pita pockets and a lighter version of the classic.",
+      tags: ["Asian", "Vegan", "Vegetarian"],
+      provider: "AsianBitesbyJeff",
+      image:
+        "https://hurrythefoodup.com/wp-content/uploads/2021/03/bahn-mi-pita.jpg.webp",
+    },
+  ];
+
+  // Filter logic applied here
+  const filteredWeeklyItems = weeklyitems.filter(
+    (item) =>
+      (selectedCuisines.length === 0 ||
+        item.tags?.some((tag) => selectedCuisines.includes(tag))) &&
+      (selectedDiets.length === 0 ||
+        item.tags?.some((tag) => selectedDiets.includes(tag)))
+  );
+
+  const filteredSpecialItems = specialitems.filter(
+    (item) =>
+      (selectedCuisines.length === 0 ||
+        item.tags?.some((tag) => selectedCuisines.includes(tag))) &&
+      (selectedDiets.length === 0 ||
+        item.tags?.some((tag) => selectedDiets.includes(tag)))
+  );
 
   return (
     <SafeAreaView style={styles.container}>
@@ -138,7 +222,7 @@ const ExploreScreen = () => {
         <View style={styles.filtersection}>
           <Pressable
             style={styles.filter}
-            // onPress={() => setModalVisible(true)}
+            onPress={() => setModalVisible(true)}
           >
             <Text style={{ color: "#D93F50", marginRight: 5 }}>Filter</Text>
             <Ionicons name="filter" color="#D93F50" />
@@ -148,8 +232,20 @@ const ExploreScreen = () => {
       <View style={styles.section}>
         <Text style={styles.title}>Weekly Items</Text>
         <ScrollView horizontal={true}>
-          {weeklyitems.map((item, index) => (
-            <Pressable key={index} onPress={() => navigation.navigate("Order")}>
+          {filteredWeeklyItems.map((item, index) => (
+            <Pressable
+              key={index}
+              onPress={() =>
+                navigation.navigate("Order", {
+                  foodName: item.foodName,
+                  description: item.description,
+                  ingredients: item.ingredients,
+                  provider: item.provider,
+                  tags: item.tags,
+                  image: item.image,
+                })
+              }
+            >
               <Card
                 foodName={item.foodName}
                 description={item.description}
@@ -166,48 +262,28 @@ const ExploreScreen = () => {
       <View style={styles.section}>
         <Text style={styles.title}>Special Items</Text>
         <ScrollView style={styles.scrollView} horizontal={true}>
-          {weeklyitems.map(
-            (
-              item,
-              index // Assuming you have a 'specialitems' array
-            ) => (
-              <Pressable
-                key={index}
-                onPress={() => navigation.navigate("Order")}
-              >
-                <Card
-                  foodName={item.foodName}
-                  description={item.description}
-                  ingredients={item.ingredients}
-                  provider={item.provider}
-                  tags={item.tags}
-                  image={item.image}
-                />
-              </Pressable>
-            )
-          )}
+          {filteredSpecialItems.map((item, index) => (
+            <Pressable key={index} onPress={() => navigation.navigate("Order")}>
+              <Card
+                foodName={item.foodName}
+                description={item.description}
+                ingredients={item.ingredients}
+                provider={item.provider}
+                tags={item.tags}
+                image={item.image}
+              />
+            </Pressable>
+          ))}
         </ScrollView>
       </View>
-      {/* <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Filter Options Here</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal> */}
+      <FilterModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        selectedCuisines={selectedCuisines}
+        setSelectedCuisines={setSelectedCuisines}
+        selectedDiets={selectedDiets}
+        setSelectedDiets={setSelectedDiets}
+      />
     </SafeAreaView>
   );
 };
