@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import OrderMealScreen from "./OrderMealScreen";
 import OrderMealScreen2 from "./OrderMealScreen2";
+import Confirmation from "./Confirmation";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import FilterModal from "../components/FilterModal";
 import { useQuery } from "convex/react";
@@ -271,6 +272,11 @@ export default function ExploreStack() {
       <Stack.Screen
         name="Order2"
         component={OrderMealScreen2}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Confirmation"
+        component={Confirmation}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

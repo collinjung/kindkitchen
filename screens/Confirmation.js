@@ -8,12 +8,11 @@ import {
   Pressable,
   ScrollView,
   SafeAreaView,
-  TextInput,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import map from "../assets/map.png";
 
-const OrderMealScreen2 = ({ route, navigation }) => {
+const Confirmation = ({ route, navigation }) => {
   const { foodName, description, image, ingredients, provider, tags } =
     route.params;
 
@@ -29,25 +28,62 @@ const OrderMealScreen2 = ({ route, navigation }) => {
         <Image source={map} style={styles.image} />
       </View>
       <View style={styles.box}>
-        <Text style={{ fontWeight: "bold", fontSize: 20, marginBottom: 10 }}>
-          Delivery To:
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 40,
+            marginBottom: 10,
+            color: "#FF4960",
+          }}
+        >
+          Order Sent!
         </Text>
-        <View style={styles.locationtime}>
-          <View style={styles.location}>
-            <Ionicons name="location" style={{ marginRight: 2 }} size={15} />
-            <Text style={{ marginRight: 2, fontWeight: "bold" }}>
-              459 Lagunita Dr
-            </Text>
-            <Ionicons name="chevron-down" size={15} />
+        <View
+          style={{
+            display: "flex",
+            flex: 0.3,
+            flexDirection: "row",
+            marginBottom: 20,
+            width: "100%",
+          }}
+        >
+          <View style={styles.locationtime}>
+            <View style={styles.location}>
+              <Ionicons name="location" style={{ marginRight: 2 }} size={15} />
+              <Text style={{ marginRight: 2, fontWeight: "bold" }}>
+                459 Lagunita Dr
+              </Text>
+            </View>
+            <View style={styles.time}>
+              <Ionicons name="time" style={{ marginRight: 2 }} size={15} />
+              <Text style={{ marginRight: 2, fontWeight: "bold" }}>
+                All times
+              </Text>
+            </View>
+            <View style={styles.time}>
+              <Ionicons name="person" style={{ marginRight: 2 }} size={15} />
+              <Text style={{ marginRight: 2, fontWeight: "bold" }}>
+                {provider}
+              </Text>
+            </View>
           </View>
-          <View style={styles.time}>
-            <Ionicons name="time" style={{ marginRight: 2 }} size={15} />
-            <Text style={{ marginRight: 2, fontWeight: "bold" }}>
-              All times
-            </Text>
-            <Ionicons name="chevron-down" size={15} />
+          <View
+            style={{
+              display: "flex",
+              flex: 1,
+              justifyContent: "flex-end",
+              alignItems: "flex-end",
+            }}
+          >
+            <View
+              style={{ display: "flex", flexDirection: "row", padding: 10 }}
+            >
+              <Ionicons name="call" style={{ marginRight: 5 }} size={20} />
+              <Ionicons name="chatbox" style={{ marginRight: 2 }} size={20} />
+            </View>
           </View>
         </View>
+
         <View style={styles.foodDescription}>
           <Image
             source={{ uri: image }}
@@ -70,35 +106,12 @@ const OrderMealScreen2 = ({ route, navigation }) => {
             </Text>
           </View>
         </View>
-        <View style={styles.message}>
-          <Text style={{ fontWeight: "bold", fontSize: 18, marginBottom: 10 }}>
-            Send a warm message
-          </Text>
-          <TextInput
-            multiline={true}
-            style={{
-              borderRadius: 8,
-              backgroundColor: "#F6F7FB",
-              flex: 1,
-              padding: 10,
-            }}
-          />
-        </View>
         <Pressable
           style={styles.orderbutton}
-          onPress={() =>
-            navigation.navigate("Confirmation", {
-              foodName,
-              description,
-              ingredients,
-              provider,
-              tags,
-              image,
-            })
-          }
+          onPress={() => navigation.navigate("My Plates")}
         >
           <Text style={{ fontWeight: "bold", color: "white", fontSize: 15 }}>
-            Send Order
+            Done
           </Text>
         </Pressable>
       </View>
@@ -113,21 +126,23 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    // height: 200,
     resizeMode: "cover",
   },
   box: {
     display: "flex",
     flex: 2,
     padding: 20,
-    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    backgroundColor: "white",
   },
   locationtime: {
     display: "flex",
-    flex: 0.3,
+    justifyContent: "center",
     marginBottom: 10,
+    flex: 1,
   },
   location: {
     display: "flex",
@@ -151,7 +166,7 @@ const styles = StyleSheet.create({
   },
   foodDescription: {
     display: "flex",
-    flex: 0.5,
+    flex: 0.4,
     flexDirection: "row",
     marginBottom: 10,
   },
@@ -166,6 +181,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 15,
     marginTop: 10,
+    width: "100%",
     backgroundColor: "#FF4960",
   },
   textContainer: {
@@ -174,4 +190,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderMealScreen2;
+export default Confirmation;

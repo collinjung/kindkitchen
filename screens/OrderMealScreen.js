@@ -84,12 +84,12 @@ const OrderMealScreen = ({ route, navigation }) => {
           style={styles.orderbutton}
           onPress={() =>
             navigation.navigate("Order2", {
-              foodName: foodName,
-              description: description,
-              ingredients: ingredients,
-              provider: provider,
-              tags: tags,
-              image: image,
+              foodName,
+              description,
+              ingredients,
+              provider,
+              tags,
+              image,
             })
           }
         >
@@ -165,8 +165,8 @@ const styles = StyleSheet.create({
   },
 
   buttonPressed: {
-    backgroundColor: "green", // Change to green when pressed
-    borderColor: "green", // Adjust border color to match
+    backgroundColor: "green",
+    borderColor: "green",
   },
   orderbutton: {
     display: "flex",
