@@ -1,5 +1,21 @@
 [
   {
+    "foodName": "Bibimbap",
+    "ingredients": ["Rice", "Mushrooms", "Carrots", "Cucumbers"],
+    "description": "Steamed white rice with assorted fresh, marinated, and sautéed vegetables.",
+    "tags": ["Asian", "Vegetarian"],
+    "provider": "AsianBitesbyJeff",
+    "image": "https://media.cnn.com/api/v1/images/stellar/prod/181114130138-korean-food-2620014201204004k-jeonju-bibimbap.jpg?q=w_1600,h_900,x_0,y_0,c_fill/h_618"
+  },
+  {
+    "foodName": "Chicken Noodle Soup",
+    "ingredients": ["Chicken", "Noodles", "Carrots"],
+    "description": "Classic chicken noodle soup for a cold day.",
+    "tags": ["Asian"],
+    "provider": "MaryCooks",
+    "image": "https://hips.hearstapps.com/hmg-prod/images/chicken-noodle-soup-index-644c2bec1ce0c.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=1200:*"
+  },
+  {
     "foodName": "Warm Roast Chicken Salad",
     "ingredients": [
       "Chicken",
@@ -9,25 +25,9 @@
       "Balsamic Vinaigrette",
       "Almonds"
     ],
-    "description": "AFeaturing herb-seasoned chicken on mixed greens with cherry tomatoes, cucumber, and feta.",
+    "description": "Featuring a herb-seasoned chicken on mixed greens with cherry tomatoes, cucumber, and feta.",
     "tags": ["Western"],
     "provider": "IvanSalads",
     "image": "https://www.realsimple.com/thmb/XzRFCoktumuInlHJQzBrLVYNAJ4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/warm-roast-chicken-salad-recipe-0222FOO-744b4650c1e4436c9d8fb7c882011a4a.jpg"
-  },
-  {
-    "foodName": "Salmon Bowl",
-    "ingredients": ["Salmon", "Rice", "Soy Sauce", "Avocado"],
-    "description": "A nutritious salmon rice bowl with plenty of protein and a savory kick",
-    "tags": ["Asian", "Pescetarian"],
-    "provider": "AsianBitesbyJeff",
-    "image": "https://assets.bonappetit.com/photos/651196bd187c095996ca5ef1/1:1/w_3368,h_3368,c_limit/20230915-WEB-SEO-0905.jpg"
-  },
-  {
-    "foodName": "Butter Chicken Curry",
-    "ingredients": ["Chicken", "Yogurt", "Tomato", "Onions", "Cream", "Rice"],
-    "description": "A rich and creamy curry that's a staple in Indian cuisine",
-    "tags": ["Asian"],
-    "provider": "HomeHelen",
-    "image": "https://gimmedelicious.com/wp-content/uploads/2020/01/30-Minute-Instant-Pot-Butter-Chicken-7.jpg"
   }
 ]
