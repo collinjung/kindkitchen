@@ -24,15 +24,14 @@ export const chat = action(async (ctx, { body }) => {
     model: "gpt-3.5-turbo",
     messages: [
       {
-        role: "System",
+        role: "system",
         content:
-          "Provide me 3 recipe ideas based on the ingredient suggestions and restrictions said by the user. Only list the recipe names. Do not show the ingredients needed or the instructions for cooking/baking.",
+          "You are an assistant tasked with providing recipes and cooking/baking instructions based on the user's input. Provide  3 recipe ideas based on the ingredient suggestions and restrictions said by the user. Only list the recipe names. Do not show the ingredients needed or the instructions for cooking/baking. When given preferences or restrictions, give your output in this format: `Based on your preferences and restrictions, here are 3 recipe suggestions for you!: \n(1) {Recipe Name 1} \n(2){Recipe Name 2} \n(3){Recipe Name 3}. If any of these sound good, please give me the corresponding number and I will give you a more detailed recipe! Otherwise, feel free to ask me about any other recipe!`. Only answer using this format when given preferences and restrictions, otherwise act as an assistant answering questions or commands by the user. If the user chooses a number from one of the recipe suggestions, give a full ingredient list, and instructions on how to make that recipe.",
       },
-      {
-        role: "User",
-        content:
-          "My ingredient suggestions: carrots, flour, sugar. My ingredient restrictions: None",
-      },
+      ...messages.map(({ body, author }) => ({
+        role: author,
+        content: body,
+      })),
     ],
     // stream: true,
   });
