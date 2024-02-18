@@ -24,15 +24,15 @@ const styles = StyleSheet.create({
     backgroundColor: "#F8F8F8",
     alignItems: "center",
     justifyContent: "center",
-    display: 'flex',
+    display: "flex",
     flex: 1,
   },
   title: {
     fontSize: 40,
-    fontWeight: 'bold',
-    marginTop: 10,
+    fontWeight: "bold",
+    marginTop: 50,
     marginBottom: 10,
-  }
+  },
 });
 
 export default HomeScreen;

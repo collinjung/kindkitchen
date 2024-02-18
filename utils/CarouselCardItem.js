@@ -12,13 +12,15 @@ export const SLIDER_WIDTH = Dimensions.get("window").width + 10;
 export const ITEM_WIDTH = Math.round(SLIDER_WIDTH * 0.7);
 
 const CarouselCardItem = ({ item, index }) => {
+  console.log(item);
   return (
     <ScrollView>
       <View style={styles.container} key={index}>
-        <Image source={{ uri: item.imgUrl }} style={styles.image} />
-        <Text style={styles.header}>{item.title}</Text>
-        <Text style={styles.body}>{item.body}</Text>
+        <Image source={{ uri: item.image }} style={styles.image} />
+        <Text style={styles.header}>{item.foodName}</Text>
+        <Text style={styles.body}>{item.description}</Text>
       </View>
+
       <View
         style={{
           paddingTop: 20,
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     elevation: 7,
   },
   image: {
-    width: ITEM_WIDTH,
+    width: 300,
     height: 300,
   },
   header: {
@@ -57,6 +59,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     paddingLeft: 20,
     paddingTop: 20,
+    paddingBottom: 10,
   },
   body: {
     color: "#222",

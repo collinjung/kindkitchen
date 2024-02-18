@@ -14,9 +14,10 @@ import type {
   FilterApi,
   FunctionReference,
 } from "convex/server";
+import type * as exploreFood from "../exploreFood.js";
 import type * as messages from "../messages.js";
-import type * as myPlates from "../myPlates.js";
 import type * as openai from "../openai.js";
+import type * as userPlates from "../userPlates.js";
 
 /**
  * A utility for referencing Convex functions in your app's API.
@@ -27,9 +28,10 @@ import type * as openai from "../openai.js";
  * ```
  */
 declare const fullApi: ApiFromModules<{
+  exploreFood: typeof exploreFood;
   messages: typeof messages;
-  myPlates: typeof myPlates;
   openai: typeof openai;
+  userPlates: typeof userPlates;
 }>;
 export declare const api: FilterApi<
   typeof fullApi,

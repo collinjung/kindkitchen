@@ -1,6 +1,6 @@
 // const messages = useQuery(api.messages.list) || [];
 // const sendMessage = useMutation(api.messages.send);
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -17,7 +17,6 @@ import { api } from "../convex/_generated/api";
 const RecipeScreen = () => {
   const messages = useQuery(api.messages.list) || [];
   const sendMessage = useAction(api.openai.chat);
-
   const [newMessageText, setNewMessageText] = useState("");
 
   return (
@@ -29,7 +28,9 @@ const RecipeScreen = () => {
       <ScrollView>
         {messages?.map((message, i) => (
           <Text key={i} style={styles.message}>
-            <Text style={styles.author}>{message.author}: </Text>
+            <Text style={styles.author}>
+              {message.author === "user" ? "User" : "OpenPlate AI"}:{" "}
+            </Text>
             <Text>{message.body ?? "..."}</Text>
           </Text>
         ))}
@@ -44,8 +45,7 @@ const RecipeScreen = () => {
         <Button
           title="Send"
           onPress={() => {
-            console.log("hi");
-            sendMessage({ author: "User", body: newMessageText });
+            sendMessage({ author: "user", body: newMessageText });
             setNewMessageText("");
           }}
           disabled={!newMessageText}
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    paddingTop: 60,
   },
   message: {
     marginBottom: 10,
