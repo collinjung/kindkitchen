@@ -145,7 +145,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-around",
+    justifyContent: "flex-start",
     marginBottom: 20,
   },
   optionButton: {
@@ -155,6 +155,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#D93F50",
     marginBottom: 10,
+    marginRight: 5,
   },
   optionText: {
     color: "#D93F50",

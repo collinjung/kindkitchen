@@ -36,11 +36,23 @@ const Card = ({
         {/* <Text style={cardStyles.ingredients}>Ingredients: {ingredients.join(", ")}</Text> */}
         {/* <Text style={cardStyles.description}>{description}</Text> */}
         <View style={cardStyles.tagsContainer}>
-          {tags.map((tag, index) => (
-            <View key={index} style={cardStyles.tagBubble}>
-              <Text style={cardStyles.tagText}>{tag}</Text>
-            </View>
-          ))}
+          {tags.length > 2 ? (
+            <>
+              <View style={cardStyles.tagBubble}>
+                <Text style={cardStyles.tagText}>{tags[0]}</Text>
+              </View>
+              <View style={cardStyles.tagBubble}>
+                <Text style={cardStyles.tagText}>{tags[1]}</Text>
+              </View>
+              <Text style={cardStyles.tagText}>...</Text>
+            </>
+          ) : (
+            tags.map((tag, index) => (
+              <View key={index} style={cardStyles.tagBubble}>
+                <Text style={cardStyles.tagText}>{tag}</Text>
+              </View>
+            ))
+          )}
         </View>
       </View>
     </View>
@@ -164,7 +176,7 @@ const ExploreScreen = () => {
       ingredients: ["Tofu", "Mayonnaise", "Pita", "Cucumber"],
       description:
         "Lemongrass tofu bahn mi made with pita pockets and a lighter version of the classic.",
-      tags: ["Asian", "Vegan", "Vegatarian"],
+      tags: ["Asian", "Vegan", "Vegetarian"],
       provider: "AsianBitesbyJeff",
       image:
         "https://hurrythefoodup.com/wp-content/uploads/2021/03/bahn-mi-pita.jpg.webp",
@@ -175,18 +187,17 @@ const ExploreScreen = () => {
   const filteredWeeklyItems = weeklyitems.filter(
     (item) =>
       (selectedCuisines.length === 0 ||
-        selectedCuisines.includes(item.cuisine)) &&
+        item.tags?.some((tag) => selectedCuisines.includes(tag))) &&
       (selectedDiets.length === 0 ||
-        item.tags.some((tag) => selectedDiets.includes(tag)))
+        item.tags?.some((tag) => selectedDiets.includes(tag)))
   );
 
-  // If specialitems also need to be filtered, apply similar logic to them
   const filteredSpecialItems = specialitems.filter(
     (item) =>
       (selectedCuisines.length === 0 ||
-        selectedCuisines.includes(item.cuisine)) &&
+        item.tags?.some((tag) => selectedCuisines.includes(tag))) &&
       (selectedDiets.length === 0 ||
-        item.tags.some((tag) => selectedDiets.includes(tag)))
+        item.tags?.some((tag) => selectedDiets.includes(tag)))
   );
 
   return (
