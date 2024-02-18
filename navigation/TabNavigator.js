@@ -3,39 +3,41 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ChatScreen from "../screens/ChatScreen";
-import OrderScreen from "../screens/OrderScreen";
+import ExploreStack from "../screens/ExploreScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator();
-<ion-icon name="home-outline"></ion-icon>;
 
 function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color }) => {
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === "Home") {
-            iconName = focused ? "home" : "home";
+            iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Profile") {
-            iconName = focused
-              ? "person-circle-outline"
-              : "person-circle-outline";
-          } else if (route.name === "Order") {
-            iconName = focused ? "fast-food-outline" : "fast-food-outline";
+            iconName = focused ? "person-circle" : "person-circle-outline";
+          } else if (route.name === "Explore") {
+            iconName = focused ? "fast-food" : "fast-food-outline";
           } else if (route.name === "Chat") {
-            iconName = focused ? "chatbubbles" : "chatbubbles";
+            iconName = focused ? "chatbubbles" : "chatbubbles-outline";
           }
-          return <Ionicons name={iconName} size={30} color={color} />;
+          return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "pink",
-        tabBarInactiveTintColor: "gray",
+        tabBarShowLabel: false, // This line hides the label for all the tabs
+        tabBarActiveTintColor: 'white',
+        tabBarInactiveTintColor: "white",
+        tabBarStyle: {
+          paddingTop: 8,
+          backgroundColor: '#D93F50',
+        },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Order" component={OrderScreen} />
-      <Tab.Screen name="Chat" component={ChatScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
+      <Tab.Screen name="Explore" component={ExploreStack} options={{headerShown: false}}/>
+      <Tab.Screen name="Chat" component={ChatScreen} options={{headerShown: false}}/>
+      <Tab.Screen name="Profile" component={ProfileScreen} options={{headerShown: false}}/>
     </Tab.Navigator>
   );
 }
