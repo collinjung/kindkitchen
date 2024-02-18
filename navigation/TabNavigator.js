@@ -18,7 +18,7 @@ function TabNavigator() {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Profile") {
             iconName = focused ? "person-circle" : "person-circle-outline";
-          } else if (route.name === "Explore") {
+          } else if (route.name === "ExploreStack") {
             iconName = focused ? "fast-food" : "fast-food-outline";
           } else if (route.name === "Chat") {
             iconName = focused ? "chatbubbles" : "chatbubbles-outline";
@@ -26,18 +26,34 @@ function TabNavigator() {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         tabBarShowLabel: false, // This line hides the label for all the tabs
-        tabBarActiveTintColor: 'white',
+        tabBarActiveTintColor: "white",
         tabBarInactiveTintColor: "white",
         tabBarStyle: {
           paddingTop: 8,
-          backgroundColor: '#D93F50',
+          backgroundColor: "#D93F50",
         },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Explore" component={ExploreStack} options={{headerShown: false}}/>
-      <Tab.Screen name="Chat" component={ChatScreen} options={{headerShown: false}}/>
-      <Tab.Screen name="Profile" component={ProfileScreen} options={{headerShown: false}}/>
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="ExploreStack"
+        component={ExploreStack}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 }

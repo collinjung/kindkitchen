@@ -10,9 +10,8 @@ import {
 } from "react-native";
 import { useNavigation, StackActions } from "@react-navigation/native";
 
-const navigation = useNavigation();
-
-const OrderMealScreen = ({navigation}) => {
+const OrderMealScreen = () => {
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={styles.container}>
       <Text>Hello</Text>

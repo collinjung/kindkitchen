@@ -6,6 +6,8 @@ import { ConvexProvider, ConvexReactClient } from "convex/react";
 import "react-native-get-random-values";
 import { CONVEX_URL } from "@env";
 
+console.log(CONVEX_URL);
+
 const convex = new ConvexReactClient(CONVEX_URL, {
   unsavedChangesWarning: false,
 });
