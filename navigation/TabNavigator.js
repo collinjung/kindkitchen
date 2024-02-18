@@ -3,37 +3,57 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import RecipeScreen from "../screens/RecipeScreen";
-import OrderScreen from "../screens/OrderScreen";
+import ExploreStack from "../screens/ExploreScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 const Tab = createBottomTabNavigator();
-<ion-icon name="home-outline"></ion-icon>;
 
 function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color }) => {
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
           if (route.name === "Home") {
-            iconName = "home";
+            iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Profile") {
-            iconName = "person-circle-outline";
-          } else if (route.name === "Order") {
-            iconName = "fast-food-outline";
+            iconName = focused ? "person-circle" : "person-circle-outline";
+          } else if (route.name === "ExploreStack") {
+            iconName = focused ? "fast-food" : "fast-food-outline";
           } else if (route.name === "Recipe") {
-            iconName = "clipboard-outline";
+            iconName = focused ? "clipboard" : "clipboard-outline";
           }
-          return <Ionicons name={iconName} size={30} color={color} />;
+          return <Ionicons name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: "pink",
-        tabBarInactiveTintColor: "gray",
+        tabBarShowLabel: false, // This line hides the label for all the tabs
+        tabBarActiveTintColor: "white",
+        tabBarInactiveTintColor: "white",
+        tabBarStyle: {
+          paddingTop: 8,
+          backgroundColor: "#D93F50",
+        },
       })}
     >
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Order" component={OrderScreen} />
-      <Tab.Screen name="Recipe" component={RecipeScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      <Tab.Screen
+        name="Home"
+        component={HomeScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="ExploreStack"
+        component={ExploreStack}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Recipe"
+        component={RecipeScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ headerShown: false }}
+      />
     </Tab.Navigator>
   );
 }

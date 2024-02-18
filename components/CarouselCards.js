@@ -15,7 +15,7 @@ const CarouselCards = () => {
   const isCarousel = React.useRef(null);
 
   return (
-    <View style={{ paddingTop: 50 }}>
+    <View>
       <Carousel
         layout="default"
         layoutCardOffset={10}
