@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import ChatScreen from "../screens/ChatScreen";
+import RecipeScreen from "../screens/RecipeScreen";
 import ExploreStack from "../screens/ExploreScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
@@ -20,8 +20,8 @@ function TabNavigator() {
             iconName = focused ? "person-circle" : "person-circle-outline";
           } else if (route.name === "ExploreStack") {
             iconName = focused ? "fast-food" : "fast-food-outline";
-          } else if (route.name === "Chat") {
-            iconName = focused ? "chatbubbles" : "chatbubbles-outline";
+          } else if (route.name === "Recipe") {
+            iconName = focused ? "clipboard" : "clipboard-outline";
           }
           return <Ionicons name={iconName} size={size} color={color} />;
         },
@@ -45,8 +45,8 @@ function TabNavigator() {
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name="Chat"
-        component={ChatScreen}
+        name="Recipe"
+        component={RecipeScreen}
         options={{ headerShown: false }}
       />
       <Tab.Screen
