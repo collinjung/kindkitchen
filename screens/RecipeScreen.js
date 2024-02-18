@@ -5,7 +5,7 @@ import {
   View,
   Text,
   TextInput,
-  Button,
+  TouchableOpacity,
   ScrollView,
   StyleSheet,
   KeyboardAvoidingView,
@@ -22,7 +22,7 @@ const RecipeScreen = () => {
   return (
     <KeyboardAvoidingView
       behavior="height"
-      keyboardVerticalOffset={Platform.OS === "ios" ? 80 : 0}
+      // keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
       style={styles.container}
     >
       <ScrollView>
@@ -42,20 +42,37 @@ const RecipeScreen = () => {
           onChangeText={(text) => setNewMessageText(text)}
           placeholder="Write a message…"
         />
-        <Button
+        <TouchableOpacity
           title="Send"
+          style={[
+            styles.button,
+            { backgroundColor: newMessageText ? "#EC6969" : "#D6D6D6" },
+          ]}
           onPress={() => {
             sendMessage({ author: "user", body: newMessageText });
             setNewMessageText("");
           }}
           disabled={!newMessageText}
-        />
+        >
+          <Text style={{ color: newMessageText ? "white" : "gray" }}>
+            Enter
+          </Text>
+        </TouchableOpacity>
       </View>
     </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
+  button: {
+    // borderWidth: 2,
+    borderRadius: 15,
+    borderColor: "#D93F50",
+    flex: 1,
+    marginBottom: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   container: {
     flex: 1,
     padding: 20,
@@ -68,12 +85,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    padding: 10,
+    borderWidth: 3,
+    borderRadius: 15,
+    borderColor: "#D93F50",
+    padding: 14,
     marginRight: 15,
     marginBottom: 10,
-    flex: 2,
+    flex: 3,
   },
 });
 
