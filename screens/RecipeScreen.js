@@ -13,12 +13,76 @@ import {
 } from "react-native";
 import { useQuery, useAction } from "convex/react";
 import { api } from "../convex/_generated/api";
+import Ionicons from "@expo/vector-icons/Ionicons";
+
+const MessageRender = ({ message }) => {
+  const data =
+    message.author === "user"
+      ? {
+          author: "User",
+          icon: "person-circle-outline",
+          color: "white",
+          align: "flex-end",
+          m: 40,
+        }
+      : {
+          author: "OpenPlate AI",
+          icon: "happy-outline",
+          color: "#FF7E7E",
+          align: "flex-start",
+          m: 0,
+        };
+  return (
+    <View
+      style={{
+        flexDirection: "row",
+        alignItems: "flex-start",
+        marginLeft: data.m,
+      }}
+    >
+      {data.author === "OpenPlate AI" ? (
+        <Ionicons
+          name={data.icon}
+          size={40}
+          color={"tomato"}
+          style={{ marginTop: 3 }}
+        />
+      ) : null}
+      <View style={[styles.message, { backgroundColor: data.color }]}>
+        <Text>
+          {data.author === "User" ? null : (
+            <Text style={styles.author}>{data.author}: </Text>
+          )}
+          <Text>{message.body ?? "..."}</Text>
+        </Text>
+      </View>
+      {data.author === "User" ? (
+        <Ionicons
+          name={data.icon}
+          size={40}
+          color={"tomato"}
+          style={{ marginTop: 3 }}
+        />
+      ) : null}
+    </View>
+  );
+};
 
 const RecipeScreen = () => {
   const messages = useQuery(api.messages.list) || [];
   const sendMessage = useAction(api.openai.chat);
   const [newMessageText, setNewMessageText] = useState("");
+  const [isPrepopulated, setIsPrepopulated] = useState(false);
 
+  useEffect(() => {
+    if (messages.length === 0 && !isPrepopulated) {
+      sendMessage({
+        body: "My preferences are carrots, onion, broccoli. My restrictions are egg, milk.",
+        author: "user",
+      });
+      setIsPrepopulated(true);
+    }
+  }, [messages, isPrepopulated]);
   return (
     <KeyboardAvoidingView
       behavior="height"
@@ -26,14 +90,9 @@ const RecipeScreen = () => {
       style={styles.container}
     >
       <ScrollView>
-        {messages?.map((message, i) => (
-          <Text key={i} style={styles.message}>
-            <Text style={styles.author}>
-              {message.author === "user" ? "User" : "OpenPlate AI"}:{" "}
-            </Text>
-            <Text>{message.body ?? "..."}</Text>
-          </Text>
-        ))}
+        {messages?.map((message, i) =>
+          i !== 0 ? <MessageRender key={i} message={message} /> : null
+        )}
       </ScrollView>
       <View style={{ flexDirection: "row" }}>
         <TextInput
@@ -69,7 +128,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "#D93F50",
     flex: 1,
-    marginBottom: 10,
+    // marginBottom: 10,
     justifyContent: "center",
     alignItems: "center",
   },
@@ -79,7 +138,12 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   message: {
-    marginBottom: 10,
+    padding: 20,
+    display: "flex",
+    borderRadius: 20,
+    margin: 5,
+    justifyContent: "center",
+    width: 250,
   },
   author: {
     fontWeight: "bold",
@@ -90,7 +154,7 @@ const styles = StyleSheet.create({
     borderColor: "#D93F50",
     padding: 14,
     marginRight: 15,
-    marginBottom: 10,
+    // marginBottom: 10,
     flex: 3,
   },
 });
