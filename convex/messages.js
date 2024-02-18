@@ -5,7 +5,7 @@ export const list = query(async (ctx) => {
   return await ctx.db.query("messages").collect();
 });
 
-// An `internalMuation` can only be called from other server functions.
+// An `internalMutation` can only be called from other server functions.
 export const update = internalMutation(async (ctx, { messageId, patch }) => {
   await ctx.db.patch(messageId, patch);
 });
@@ -13,10 +13,10 @@ export const update = internalMutation(async (ctx, { messageId, patch }) => {
 export const send = mutation(async (ctx, { body }) => {
   await ctx.db.insert("messages", {
     body,
-    author: "User",
+    author: "user",
   });
   const botMessageId = await ctx.db.insert("messages", {
-    author: "OpenPlate AI",
+    author: "system",
   });
   const messages = await ctx.db
     .query("messages")

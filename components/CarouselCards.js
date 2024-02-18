@@ -10,7 +10,7 @@ import { useQuery } from "convex/react";
 import { api } from "../convex/_generated/api";
 
 const CarouselCards = () => {
-  const data = useQuery(api.myPlates.get);
+  const data = useQuery(api.userPlates.get);
   const [index, setIndex] = React.useState(0);
   const isCarousel = React.useRef(null);
 

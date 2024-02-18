@@ -15,6 +15,8 @@ import {
 import OrderMealScreen from "./OrderMealScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import FilterModal from "../components/FilterModal";
+import { useQuery } from "convex/react";
+import { api } from "../convex/_generated/api";
 
 // CARD RENDER LOGIC
 const Card = ({
@@ -112,96 +114,10 @@ const cardStyles = StyleSheet.create({
 const ExploreScreen = () => {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCuisines, setSelectedCuisines] = useState([]);
+  const [selectedDiets, setSelectedDiets] = useState([]);
 
-  const weeklyitems = [
-    {
-      foodName: "Warm Roast Chicken Salad",
-      ingredients: [
-        "Chicken",
-        "Cucumber",
-        "Tomato",
-        "Feta",
-        "Balsamic Vinaigrette",
-        "Almonds",
-      ],
-      description:
-        "AFeaturing herb-seasoned chicken on mixed greens with cherry tomatoes, cucumber, and feta.",
-      tags: ["Western"],
-      provider: "IvanSalads",
-      image:
-        "https://www.realsimple.com/thmb/XzRFCoktumuInlHJQzBrLVYNAJ4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/warm-roast-chicken-salad-recipe-0222FOO-744b4650c1e4436c9d8fb7c882011a4a.jpg",
-    },
-    {
-      foodName: "Salmon Bowl",
-      ingredients: ["Salmon", "Rice", "Soy Sauce", "Avocado"],
-      description:
-        "A nutritious salmon rice bowl with plenty of protein and a savory kick",
-      tags: ["Asian", "Pescetarian"],
-      provider: "AsianBitesbyJeff",
-      image:
-        "https://assets.bonappetit.com/photos/651196bd187c095996ca5ef1/1:1/w_3368,h_3368,c_limit/20230915-WEB-SEO-0905.jpg",
-    },
-    {
-      foodName: "Butter Chicken Curry",
-      ingredients: ["Chicken", "Yogurt", "Tomato", "Onions", "Cream", "Rice"],
-      description: "A rich and creamy curry that's a staple in Indian cuisine",
-      tags: ["Asian"],
-      provider: "HomeHelen",
-      image:
-        "https://gimmedelicious.com/wp-content/uploads/2020/01/30-Minute-Instant-Pot-Butter-Chicken-7.jpg",
-    },
-    {
-      foodName: "Fried Rice",
-      ingredients: [
-        "Eggs",
-        "Vegetable Oil",
-        "Green Onions",
-        "Soy Sauce",
-        "Garlic",
-        "Peas",
-      ],
-      description:
-        "A delightful blend of fluffy rice stir-fried to perfection.",
-      tags: ["Asian", "Vegetarian", "Pescatarian"],
-      provider: "HomeHelen",
-      image:
-        "https://mission-food.com/wp-content/uploads/2022/01/Spicy-Vegetable-Fried-Rice-Featured.jpg",
-    },
-    {
-      foodName: "Yaki Udon",
-      ingredients: [
-        "Eggs",
-        "Vegetable Oil",
-        "Green Onions",
-        "Soy Sauce",
-        "Garlic",
-        "Peas",
-      ],
-      description:
-        "A delightful blend of fluffy rice stir-fried to perfection.",
-      tags: ["Asian", "Vegetarian", "Pescatarian", "Vegan"],
-      provider: "HomeHelen",
-      image:
-        "https://cdn77-s3.lazycatkitchen.com/wp-content/uploads/2020/02/vegan-yaki-udon-close-1024x1536.jpg",
-    },
-    {
-      foodName: "Japchae",
-      ingredients: [
-        "Eggs",
-        "Vegetable Oil",
-        "Green Onions",
-        "Soy Sauce",
-        "Garlic",
-        "Peas",
-      ],
-      description:
-        "A savory and sweet Korean dish of stir-fried glass noodles and vegetables.",
-      tags: ["Asian", "Vegetarian", "Pescatarian", "Vegan"],
-      provider: "MaryCooks",
-      image:
-        "https://assets.epicurious.com/photos/614b77f992c8a88b430d0a2f/16:9/w_3024,h_1701,c_limit/Japchae1-jd.jpg",
-    },
-  ];
+  const weeklyitems = useQuery(api.exploreFood.get) || [];
 
   const specialitems = [
     {
@@ -255,6 +171,24 @@ const ExploreScreen = () => {
     },
   ];
 
+  // Filter logic applied here
+  const filteredWeeklyItems = weeklyitems.filter(
+    (item) =>
+      (selectedCuisines.length === 0 ||
+        selectedCuisines.includes(item.cuisine)) &&
+      (selectedDiets.length === 0 ||
+        item.tags.some((tag) => selectedDiets.includes(tag)))
+  );
+
+  // If specialitems also need to be filtered, apply similar logic to them
+  const filteredSpecialItems = specialitems.filter(
+    (item) =>
+      (selectedCuisines.length === 0 ||
+        selectedCuisines.includes(item.cuisine)) &&
+      (selectedDiets.length === 0 ||
+        item.tags.some((tag) => selectedDiets.includes(tag)))
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topsection}>
@@ -287,7 +221,7 @@ const ExploreScreen = () => {
       <View style={styles.section}>
         <Text style={styles.title}>Weekly Items</Text>
         <ScrollView horizontal={true}>
-          {weeklyitems.map((item, index) => (
+          {filteredWeeklyItems.map((item, index) => (
             <Pressable key={index} onPress={() => navigation.navigate("Order")}>
               <Card
                 foodName={item.foodName}
@@ -305,31 +239,27 @@ const ExploreScreen = () => {
       <View style={styles.section}>
         <Text style={styles.title}>Special Items</Text>
         <ScrollView style={styles.scrollView} horizontal={true}>
-          {specialitems.map(
-            (
-              item,
-              index // Assuming you have a 'specialitems' array
-            ) => (
-              <Pressable
-                key={index}
-                onPress={() => navigation.navigate("Order")}
-              >
-                <Card
-                  foodName={item.foodName}
-                  description={item.description}
-                  ingredients={item.ingredients}
-                  provider={item.provider}
-                  tags={item.tags}
-                  image={item.image}
-                />
-              </Pressable>
-            )
-          )}
+          {filteredSpecialItems.map((item, index) => (
+            <Pressable key={index} onPress={() => navigation.navigate("Order")}>
+              <Card
+                foodName={item.foodName}
+                description={item.description}
+                ingredients={item.ingredients}
+                provider={item.provider}
+                tags={item.tags}
+                image={item.image}
+              />
+            </Pressable>
+          ))}
         </ScrollView>
       </View>
       <FilterModal
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        selectedCuisines={selectedCuisines}
+        setSelectedCuisines={setSelectedCuisines}
+        selectedDiets={selectedDiets}
+        setSelectedDiets={setSelectedDiets}
       />
     </SafeAreaView>
   );
