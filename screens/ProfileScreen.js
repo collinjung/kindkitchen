@@ -36,9 +36,9 @@ const ProfileScreen = () => {
           <Text
             style={[styles.preferenceText, styles.boldText, styles.smallerText]}
           >
-            Alice Wang
+            Collin Jung
           </Text>
-          <Text style={styles.userEmail}>alicewang@gmail.com</Text>
+          <Text style={styles.userEmail}>cjung2@stanford.edu</Text>
         </View>
       </View>
       <ScrollView
