@@ -55,7 +55,7 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#F8F8F8",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
     display: "flex",

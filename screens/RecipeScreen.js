@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   button: {
     // borderWidth: 2,
     borderRadius: 15,
-    borderColor: "#D93F50",
+    borderColor: "#FF4960",
     flex: 1,
     // marginBottom: 10,
     justifyContent: "center",
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 3,
     borderRadius: 15,
-    borderColor: "#D93F50",
+    borderColor: "#FF4960",
     padding: 14,
     marginRight: 15,
     // marginBottom: 10,
