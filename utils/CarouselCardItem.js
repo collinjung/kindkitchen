@@ -38,6 +38,9 @@ const CarouselCardItem = ({ item, index }) => {
         >
           <Text>{item.info}</Text>
         </View>
+        <Text style={{ color: "gray", textAlign: "center", marginTop: -20 }}>
+          Tap card for more information!
+        </Text>
       </View>
       <View style={styles.container}>
         <Text style={styles.header}>Ingredients:</Text>
