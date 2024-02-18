@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import OrderMealScreen from "./OrderMealScreen";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import FilterModal from "../components/FilterModal";
 
 // CARD RENDER LOGIC
 const Card = ({
@@ -110,7 +111,7 @@ const cardStyles = StyleSheet.create({
 
 const ExploreScreen = () => {
   const navigation = useNavigation();
-  // const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const weeklyitems = [
     {
@@ -202,6 +203,58 @@ const ExploreScreen = () => {
     },
   ];
 
+  const specialitems = [
+    {
+      foodName: "Roasted Beef",
+      ingredients: ["Beef", "Potatoes", "Butter"],
+      description: "Classic roasted beef with mashed potatoes.",
+      tags: ["Western"],
+      provider: "MaryCooks",
+      image:
+        "https://hips.hearstapps.com/hmg-prod/images/delish-roast-beef-horizontal-1540505165.jpg?crop=1xw:0.84375xh;center,top",
+    },
+    {
+      foodName: "Kung Pao Brussel Sprouts",
+      ingredients: ["Brussel sprouts", "Rice", "Peanuts", "Garlic"],
+      description:
+        "Sweet Kung Pao sauce, served over rice and crowned with roasted peanuts.",
+      tags: ["Asian", "Vegan", "Vegatarian"],
+      provider: "AsianBitesbyJeff",
+      image:
+        "https://pinchandswirl.com/wp-content/uploads/2020/09/Kung-Pao-Brussels-Sprouts.jpg",
+    },
+    {
+      foodName: "BBQ Pulled Pork Sandwich",
+      ingredients: ["Pork", "Buns", "Lettuce"],
+      description:
+        "Tender, tangy, sweet and smoky with the perfect kick, smothered in BBQ sauce.",
+      tags: ["Western"],
+      provider: "CarolRecipes",
+      image:
+        "https://carlsbadcravings.com/wp-content/uploads/2018/01/BBQ-Pulled-Pork-1.jpg",
+    },
+    {
+      foodName: "Eggplant Lasagna",
+      ingredients: ["Eggplant", "Milk", "Cheese", "Tomato"],
+      description:
+        "Tender slices of roasted eggplant with rich marinara sauce and cheese.",
+      tags: ["Western", "Vegetarian"],
+      provider: "MaryCooks",
+      image:
+        "https://www.wellplated.com/wp-content/uploads/2019/08/Eggplant-Lasagna.jpg",
+    },
+    {
+      foodName: "Lemongrass Tofu Bahn Mi",
+      ingredients: ["Tofu", "Mayonnaise", "Pita", "Cucumber"],
+      description:
+        "Lemongrass tofu bahn mi made with pita pockets and a lighter version of the classic.",
+      tags: ["Asian", "Vegan", "Vegatarian"],
+      provider: "AsianBitesbyJeff",
+      image:
+        "https://hurrythefoodup.com/wp-content/uploads/2021/03/bahn-mi-pita.jpg.webp",
+    },
+  ];
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topsection}>
@@ -224,7 +277,7 @@ const ExploreScreen = () => {
         <View style={styles.filtersection}>
           <Pressable
             style={styles.filter}
-            // onPress={() => setModalVisible(true)}
+            onPress={() => setModalVisible(true)}
           >
             <Text style={{ color: "#D93F50", marginRight: 5 }}>Filter</Text>
             <Ionicons name="filter" color="#D93F50" />
@@ -252,7 +305,7 @@ const ExploreScreen = () => {
       <View style={styles.section}>
         <Text style={styles.title}>Special Items</Text>
         <ScrollView style={styles.scrollView} horizontal={true}>
-          {weeklyitems.map(
+          {specialitems.map(
             (
               item,
               index // Assuming you have a 'specialitems' array
@@ -274,26 +327,10 @@ const ExploreScreen = () => {
           )}
         </ScrollView>
       </View>
-      {/* <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          setModalVisible(!modalVisible);
-        }}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Filter Options Here</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
-            >
-              <Text style={styles.textStyle}>Hide Modal</Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal> */}
+      <FilterModal
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
     </SafeAreaView>
   );
 };
