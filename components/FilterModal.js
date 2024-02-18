@@ -1,8 +1,18 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Modal } from "react-native";
 
-const FilterModal = ({ modalVisible, setModalVisible }) => {
+const FilterModal = ({
+  modalVisible,
+  setModalVisible,
+  selectedCuisines,
+  setSelectedCuisines,
+  selectedDiets,
+  setSelectedDiets,
+}) => {
   cuisines = [
+    "Asian",
+    "Western",
+    "Mediterranean",
     "Korean",
     "Japanese",
     "Chinese",
@@ -13,7 +23,6 @@ const FilterModal = ({ modalVisible, setModalVisible }) => {
     "Italian",
     "French",
     "Caribbean",
-    "American",
   ];
   diet_types = [
     "Vegan",
@@ -23,6 +32,21 @@ const FilterModal = ({ modalVisible, setModalVisible }) => {
     "Gluten-free",
     "Pescetarian",
   ];
+  const toggleCuisine = (cuisine) => {
+    if (selectedCuisines.includes(cuisine)) {
+      setSelectedCuisines(selectedCuisines.filter((c) => c !== cuisine));
+    } else {
+      setSelectedCuisines([...selectedCuisines, cuisine]);
+    }
+  };
+
+  const toggleDiet = (diet) => {
+    if (selectedDiets.includes(diet)) {
+      setSelectedDiets(selectedDiets.filter((d) => d !== diet));
+    } else {
+      setSelectedDiets([...selectedDiets, diet]);
+    }
+  };
   return (
     <Modal
       transparent={true}
@@ -38,8 +62,22 @@ const FilterModal = ({ modalVisible, setModalVisible }) => {
           <Text style={styles.sectionTitle}>Cuisine</Text>
           <View style={styles.buttonContainer}>
             {cuisines.map((cuisine, index) => (
-              <TouchableOpacity key={index} style={styles.optionButton}>
-                <Text style={styles.optionText}>{cuisine}</Text>
+              <TouchableOpacity
+                key={index}
+                style={[
+                  styles.optionButton,
+                  selectedCuisines.includes(cuisine) && styles.selectedOption,
+                ]}
+                onPress={() => toggleCuisine(cuisine)}
+              >
+                <Text
+                  style={[
+                    styles.optionText,
+                    selectedCuisines.includes(cuisine) && styles.selectedOption,
+                  ]}
+                >
+                  {cuisine}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -47,8 +85,22 @@ const FilterModal = ({ modalVisible, setModalVisible }) => {
           <Text style={styles.sectionTitle}>Diet</Text>
           <View style={styles.buttonContainer}>
             {diet_types.map((diet_type, index) => (
-              <TouchableOpacity key={index} style={styles.optionButton}>
-                <Text style={styles.optionText}>{diet_type}</Text>
+              <TouchableOpacity
+                key={index}
+                style={[
+                  styles.optionButton,
+                  selectedDiets.includes(diet_type) && styles.selectedOption,
+                ]}
+                onPress={() => toggleDiet(diet_type)} // Fix applied here
+              >
+                <Text
+                  style={[
+                    styles.optionText,
+                    selectedDiets.includes(diet_type) && styles.selectedOption, // Use styles.selectedOptionText for text
+                  ]}
+                >
+                  {diet_type}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -117,6 +169,11 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     fontWeight: "bold",
+  },
+  selectedOption: {
+    backgroundColor: "#D93F50", // or any highlight color
+    borderColor: "transparent",
+    color: "white",
   },
 });
 
