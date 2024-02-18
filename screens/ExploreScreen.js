@@ -34,8 +34,6 @@ const Card = ({
       <View style={cardStyles.textContainer}>
         <Text style={cardStyles.foodName}>{foodName}</Text>
         <Text style={cardStyles.provider}>by {provider}</Text>
-        {/* <Text style={cardStyles.ingredients}>Ingredients: {ingredients.join(", ")}</Text> */}
-        {/* <Text style={cardStyles.description}>{description}</Text> */}
         <View style={cardStyles.tagsContainer}>
           {tags.length > 2 ? (
             <>
@@ -92,14 +90,6 @@ const cardStyles = StyleSheet.create({
     fontSize: 14,
     color: "#848484",
   },
-  // ingredients: {
-  //   fontSize: 14,
-  //   marginBottom: 5,
-  // },
-  // description: {
-  //   fontSize: 14,
-  //   marginBottom: 5,
-  // },
   tags: {
     fontSize: 12,
     color: "grey",
@@ -152,6 +142,19 @@ const ExploreScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View
+        style={{
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Text style={{ fontWeight: "bold", fontSize: 30, paddingTop: 10 }}>
+          Discover
+        </Text>
+      </View>
       <View style={styles.topsection}>
         <View style={styles.locationtime}>
           <View style={styles.location}>
@@ -293,8 +296,8 @@ const styles = StyleSheet.create({
     padding: 20,
     display: "flex",
     width: "100%",
-    flex: 0.5,
-    flexDirection: "column",
+    flex: 0.2,
+    flexDirection: "row",
   },
   title: {
     fontSize: 20,
@@ -328,11 +331,11 @@ const styles = StyleSheet.create({
   filter: {
     backgroundColor: "#FBD9E2",
     display: "flex",
-    width: "33%",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     borderRadius: 8,
   },
 });
