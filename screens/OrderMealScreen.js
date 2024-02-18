@@ -10,18 +10,25 @@ import {
 } from "react-native";
 import { useNavigation, StackActions } from "@react-navigation/native";
 
-const OrderMealScreen = () => {
-  const navigation = useNavigation();
+const OrderMealScreen = ({ route, navigation }) => {
+  // Extracting parameters from the route
+  const { foodName, description, ingredients, provider, tags, image } =
+    route.params;
+
   return (
-    <SafeAreaView style={styles.container}>
-      <Text>Hello</Text>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text style={styles.foodName}>{foodName}</Text>
+      <Image source={{ uri: image }} style={styles.image} />
+      <Text style={styles.description}>{description}</Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#F8F8F8",
+    display: "flex",
+    flex: 1,
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
   },

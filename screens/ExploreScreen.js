@@ -233,7 +233,19 @@ const ExploreScreen = () => {
         <Text style={styles.title}>Weekly Items</Text>
         <ScrollView horizontal={true}>
           {filteredWeeklyItems.map((item, index) => (
-            <Pressable key={index} onPress={() => navigation.navigate("Order")}>
+            <Pressable
+              key={index}
+              onPress={() =>
+                navigation.navigate("Order", {
+                  foodName: item.foodName,
+                  description: item.description,
+                  ingredients: item.ingredients,
+                  provider: item.provider,
+                  tags: item.tags,
+                  image: item.image,
+                })
+              }
+            >
               <Card
                 foodName={item.foodName}
                 description={item.description}
