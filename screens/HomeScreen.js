@@ -21,7 +21,7 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#F8F8F8",
+    backgroundColor: "white",
     alignItems: "center",
     justifyContent: "center",
     display: "flex",
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
     marginTop: 50,
-    marginBottom: 10,
+    marginBottom: 30,
   },
 });
 

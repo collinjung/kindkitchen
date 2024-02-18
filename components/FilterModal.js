@@ -153,16 +153,16 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderRadius: 20,
     borderWidth: 2,
-    borderColor: "#D93F50",
+    borderColor: "#FF4960",
     marginBottom: 10,
     marginRight: 5,
   },
   optionText: {
-    color: "#D93F50",
+    color: "#FF4960",
     textAlign: "center",
   },
   applyButton: {
-    backgroundColor: "#D93F50",
+    backgroundColor: "#FF4960",
     borderRadius: 20,
     padding: 15,
   },
@@ -172,7 +172,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   selectedOption: {
-    backgroundColor: "#D93F50", // or any highlight color
+    backgroundColor: "#FF4960",
     borderColor: "transparent",
     color: "white",
   },

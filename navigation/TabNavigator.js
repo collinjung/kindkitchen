@@ -30,7 +30,7 @@ function TabNavigator() {
         tabBarInactiveTintColor: "white",
         tabBarStyle: {
           paddingTop: 8,
-          backgroundColor: "#D93F50",
+          backgroundColor: "#FF4960",
         },
       })}
     >

@@ -13,6 +13,7 @@ import {
   Modal,
 } from "react-native";
 import OrderMealScreen from "./OrderMealScreen";
+import OrderMealScreen2 from "./OrderMealScreen2";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import FilterModal from "../components/FilterModal";
 import { useQuery } from "convex/react";
@@ -224,8 +225,8 @@ const ExploreScreen = () => {
             style={styles.filter}
             onPress={() => setModalVisible(true)}
           >
-            <Text style={{ color: "#D93F50", marginRight: 5 }}>Filter</Text>
-            <Ionicons name="filter" color="#D93F50" />
+            <Text style={{ color: "#FF4960", marginRight: 5 }}>Filter</Text>
+            <Ionicons name="filter" color="#FF4960" />
           </Pressable>
         </View>
       </View>
@@ -263,7 +264,19 @@ const ExploreScreen = () => {
         <Text style={styles.title}>Special Items</Text>
         <ScrollView style={styles.scrollView} horizontal={true}>
           {filteredSpecialItems.map((item, index) => (
-            <Pressable key={index} onPress={() => navigation.navigate("Order")}>
+            <Pressable
+              key={index}
+              onPress={() =>
+                navigation.navigate("Order", {
+                  foodName: item.foodName,
+                  description: item.description,
+                  ingredients: item.ingredients,
+                  provider: item.provider,
+                  tags: item.tags,
+                  image: item.image,
+                })
+              }
+            >
               <Card
                 foodName={item.foodName}
                 description={item.description}
@@ -298,7 +311,16 @@ export default function ExploreStack() {
         component={ExploreScreen}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Order" component={OrderMealScreen} />
+      <Stack.Screen
+        name="Order"
+        component={OrderMealScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Order2"
+        component={OrderMealScreen2}
+        options={{ headerShown: false }}
+      />
     </Stack.Navigator>
   );
 }
